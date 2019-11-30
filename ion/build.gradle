@@ -1,4 +1,23 @@
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath project.hasProperty('global_gradleAndroidPlugin') ? global_gradleAndroidPlugin : 'com.android.tools.build:gradle:3.2.0'
+    }
+}
+
+
 apply plugin: 'com.android.library'
+
+repositories {
+    jcenter()
+    google()
+    mavenCentral()
+}
 
 dependencies {
     api project(':AndroidAsync:AndroidAsync')
@@ -57,3 +76,9 @@ android {
 //if (System.getenv().I_AM_KOUSH == 'true') {
 //    apply from: '/Users/koush/cfg/maven.gradle'
 //}
+task createJar(type: Copy) {
+    from('build/intermediates/packaged-classes/debug/')
+    into('libs/')
+    include('classes.jar')
+    rename('classes.jar', 'ion.jar')
+}
