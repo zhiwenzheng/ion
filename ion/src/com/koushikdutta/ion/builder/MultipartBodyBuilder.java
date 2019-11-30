@@ -47,7 +47,7 @@ public interface MultipartBodyBuilder<M extends MultipartBodyBuilder> {
      * @param file Multipart file to send
      * @return
      */
-    public M setMultipartFile(String name, String contentType, File file);
+    public M setMultipartFile(String name, String contentType, File file, String fileName);
 
     /**
      * Specify multipart/form-data parameters to send to the HTTP server. If no HTTP method was explicitly

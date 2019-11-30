@@ -806,17 +806,17 @@ class IonRequestBuilder implements Builders.Any.B, Builders.Any.F, Builders.Any.
     MultipartFormDataBody multipartBody;
     @Override
     public IonRequestBuilder setMultipartFile(String name, File file) {
-        return setMultipartFile(name, null, file);
+        return setMultipartFile(name, null, file, null);
     }
 
     @Override
-    public IonRequestBuilder setMultipartFile(String name, String contentType, File file) {
+    public IonRequestBuilder setMultipartFile(String name, String contentType, File file, String fileName) {
         if (multipartBody == null) {
             multipartBody = new MultipartFormDataBody();
             setBody(multipartBody);
         }
 
-        FilePart part = new FilePart(name, file);
+        FilePart part = new FilePart(name, file, fileName);
 
         if (contentType == null)
             contentType = AsyncHttpServer.tryGetContentType(file.getAbsolutePath());
